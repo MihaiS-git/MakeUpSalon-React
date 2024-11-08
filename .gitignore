@@ -79,3 +79,4 @@ build/
 coverage/
 
 tokens/
+credentials.json
