@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function HamburgerMenu({ openState, handleClose }) {
     return (
         <>
@@ -47,12 +49,13 @@ export default function HamburgerMenu({ openState, handleClose }) {
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <NavLink
+                            to="/auth"
                             className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
+                            onClick={handleClose}
                         >
-                            Login
-                        </a>
+                            Authentication
+                        </NavLink>
                     </li>
                     <button
                         className="block w-full p-2 text-right font-bold text-gray-50 hover:text-fuchsia-400"

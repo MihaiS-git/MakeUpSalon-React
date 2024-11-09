@@ -1,4 +1,6 @@
-export default function ClassicMenu() {
+import { NavLink } from 'react-router-dom';
+
+export default function MainNavigation() {
     return (
         <>
             <nav className="hidden lg:hidden xl:block">
@@ -44,12 +46,12 @@ export default function ClassicMenu() {
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <NavLink
+                            to='/auth'
                             className="block w-full px-16 text-center text-slate-400 hover:text-fuchsia-400"
                         >
-                            Login
-                        </a>
+                            Authentication
+                        </NavLink>
                     </li>
                 </ul>
             </nav>

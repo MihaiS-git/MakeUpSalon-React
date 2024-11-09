@@ -1,7 +1,6 @@
-export default function PageContent({ children}) { 
+export default function PageContent({ className, children}) { 
     return (
-        
-        <div>
+        <div className={className}>
             {children}
         </div>
     );
