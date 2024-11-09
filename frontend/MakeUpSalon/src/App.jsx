@@ -1,13 +1,20 @@
 import "./App.css";
-import Header from "./components/Header";
-import GeneralBackground from "./components/GeneralBackground";
+import RootLayout from "./components/Root";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./pages/Home";
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <RootLayout />,
+        children: [
+            {index: true, element: <HomePage/>}
+        ]
+    }
+]);
 
 function App() {
-    return (
-        <GeneralBackground>
-            <Header />
-        </GeneralBackground>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
