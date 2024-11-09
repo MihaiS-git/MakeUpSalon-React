@@ -3,9 +3,9 @@ import Header from './Header.jsx';
 
 export default function RootLayout() {
     return (
-        <main className="flex items-center justify-center bg-gradient-to-r from-slate-950 to-fuchsia-950">
+        <main className="flex items-center justify-center bg-gradient-to-r from-slate-950 to-fuchsia-950 fixed w-full h-full">
             <div
-                className="h-screen w-full bg-contain"
+                className="h-full w-full bg-contain"
                 style={{
                     backgroundImage: "url('/mainBackground.png')",
                     backgroundSize: "lg:bg-[55%] xl:bg-[45%]",

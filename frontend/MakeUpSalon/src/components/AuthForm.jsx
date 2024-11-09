@@ -1,9 +1,9 @@
 import { Form, Link } from "react-router-dom";
 
-export default function AuthForm() {
+export default function AuthForm({className}) {
     return (
-        <Form method="post">
-            <h1 className="text-center text-2xl font-bold mb-4 text-fuchsia-950">
+        <Form method="post" className={className}>
+            <h1 className="text-center text-3xl font-medium mb-4 text-fuchsia-950">
                 Authentication Form
             </h1>
             <p className="p-2">
@@ -33,14 +33,19 @@ export default function AuthForm() {
                 />
             </p>
             <div className="m-4 text-lg justify-center align-middle">
-                <button className="w-full py-2  rounded-md text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200">
+                <button className="w-full py-2 my-2 rounded-md text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200">
                     Login
                 </button>
-                <p className="m-4 text-md">
-                <Link>
-                    <h6 className="text-center text-fuchsia-950 hover:text-fuchsia-200">Do you have an account?</h6>
-                </Link>
-                </p>
+                <div className="m-4">
+                    <div className="text-center text-fuchsia-950">
+                        <p className=" text-sm">
+                            Don&apos;t you have an account?
+                        </p>
+                        <Link className="text-sm underline text-center text-fuchsia-950 hover:text-fuchsia-200" to='/signin'>
+                            Sign In
+                        </Link>
+                    </div>
+                </div>
             </div>
         </Form>
     );
