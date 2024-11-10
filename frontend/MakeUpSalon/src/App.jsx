@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import AuthenticationPage from "./pages/Authentication.jsx";
 import SignUpPage from "./pages/SignUp.jsx";
+import RecoverPasswordPage from "./pages/RecoverPassword.jsx";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: 'signup',
                 element: <SignUpPage />
+            },
+            {
+                path: 'recover',
+                element: <RecoverPasswordPage />
             }
         ]
     }
