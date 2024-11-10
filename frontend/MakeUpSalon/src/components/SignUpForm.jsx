@@ -1,10 +1,10 @@
 import { Form } from "react-router-dom";
 
-export default function SignInForm({ className }) {
+export default function SignUpForm({ className }) {
     return (
         <Form method="post" className={className}>
             <h1 className="text-center text-3xl font-medium mb-2 text-fuchsia-950">
-                Sign In Form
+                Sign Up Form
             </h1>
             <p>
                 <label htmlFor="email" className="text-lg text-fuchsia-950">
@@ -101,7 +101,7 @@ export default function SignInForm({ className }) {
             <hr />
             <div className="m-4 text-lg justify-center align-middle">
                 <button className="w-full py-2 my-2 rounded-md text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200">
-                    Sign In
+                    Sign Up
                 </button>
             </div>
         </Form>

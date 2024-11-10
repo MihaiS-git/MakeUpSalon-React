@@ -41,8 +41,8 @@ export default function AuthForm({className}) {
                         <p className=" text-sm">
                             Don&apos;t you have an account?
                         </p>
-                        <Link className="text-sm underline text-center text-fuchsia-950 hover:text-fuchsia-200" to='/signin'>
-                            Sign In
+                        <Link className="text-sm underline text-center text-fuchsia-950 hover:text-fuchsia-200" to='/signup'>
+                            Sign Up
                         </Link>
                     </div>
                 </div>
