@@ -1,7 +1,7 @@
 import { Form, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../store/auth-slice";
+import { login } from "../../store/auth-slice";
 
 export default function AuthForm({ className }) {
     const [email, setEmail] = useState('');

@@ -1,5 +1,5 @@
 import PageContent from "../components/PageContent.jsx";
-import SignUpForm from "../components/SignUpForm.jsx";
+import SignUpForm from "../components/auth/SignUpForm.jsx";
 
 export default function SignUpPage() {
     return (

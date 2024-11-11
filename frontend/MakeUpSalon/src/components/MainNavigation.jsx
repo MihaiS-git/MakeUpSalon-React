@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../store/auth-slice";
 
 export default function MainNavigation() {
@@ -18,12 +18,12 @@ export default function MainNavigation() {
             <nav className="hidden lg:hidden xl:block">
                 <ul className="flex items-center text-lg p-4">
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            to='/treatments'
                             className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                         >
                             Treatments
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <a

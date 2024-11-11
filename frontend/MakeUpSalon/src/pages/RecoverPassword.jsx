@@ -1,5 +1,5 @@
 import PageContent from "../components/PageContent";
-import RecoverPasswordForm from "../components/RecoverPasswordForm";
+import RecoverPasswordForm from "../components/auth/RecoverPasswordForm";
 
 export default function RecoverPasswordPage() { 
     return (
