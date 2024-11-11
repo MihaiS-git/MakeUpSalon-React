@@ -3,7 +3,7 @@ import Header from './Header.jsx';
 
 export default function RootLayout() {
     return (
-        <main className="flex items-center justify-center bg-gradient-to-r from-slate-950 to-fuchsia-950 fixed w-full h-full">
+        <main className="flex items-center justify-center bg-gradient-to-r from-slate-950 to-fuchsia-950 fixed w-full h-full font-serif">
             <div
                 className="h-full w-full bg-contain"
                 style={{

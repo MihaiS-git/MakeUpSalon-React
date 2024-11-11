@@ -1,6 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../store/auth-slice";
 
 export default function MainNavigation() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+    function handleLogout() {
+        dispatch(logout());
+        navigate("/auth");
+    }
+
     return (
         <>
             <nav className="hidden lg:hidden xl:block">
@@ -46,12 +58,21 @@ export default function MainNavigation() {
                         </a>
                     </li>
                     <li>
-                        <NavLink
-                            to='/auth'
-                            className="block w-full px-16 text-center text-slate-400 hover:text-fuchsia-400"
-                        >
-                            Authentication
-                        </NavLink>
+                        {isAuthenticated ? (
+                            <button
+                                onClick={handleLogout}
+                                className="block w-full px-16 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <NavLink
+                                to="/auth"
+                                className="block w-full px-16 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Authentication
+                            </NavLink>
+                        )}
                     </li>
                 </ul>
             </nav>

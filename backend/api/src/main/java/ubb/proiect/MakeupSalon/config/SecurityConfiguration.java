@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .cors(cors -> cors
                         .configurationSource(request -> {
                             CorsConfiguration config = new CorsConfiguration();
-                            config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+                            config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:5173"));
                             config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
                             config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
                             return config;

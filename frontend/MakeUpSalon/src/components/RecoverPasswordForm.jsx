@@ -3,7 +3,7 @@ import { Form } from "react-router-dom";
 export default function RecoverPasswordForm({className}) { 
     return (
         <Form method="post" className={className}>
-            <h1 className="text-center text-3xl font-medium mb-4 text-fuchsia-950">
+            <h1 className="text-center text-3xl font-medium mt-2 mb-4 text-fuchsia-950">
                 Recover Password Form
             </h1>
             <p className="p-2">
