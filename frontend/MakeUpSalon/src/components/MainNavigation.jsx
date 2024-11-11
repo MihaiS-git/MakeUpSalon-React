@@ -33,22 +33,36 @@ export default function MainNavigation() {
                             Professionals
                         </a>
                     </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
-                        >
-                            Account
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
-                        >
-                            Appointments
-                        </a>
-                    </li>
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Account
+                            </a>
+                        </li>
+                    )}
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Appointments
+                            </a>
+                        </li>
+                    )}
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Cart
+                            </a>
+                        </li>
+                    )}
                     <li>
                         <a
                             href="#"
