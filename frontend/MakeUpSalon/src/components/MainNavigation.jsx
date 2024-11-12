@@ -19,19 +19,19 @@ export default function MainNavigation() {
                 <ul className="flex items-center text-lg p-4">
                     <li>
                         <Link
-                            to='/treatments'
+                            to="/treatments"
                             className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                         >
                             Treatments
                         </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            to="/professionals"
                             className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                         >
                             Professionals
-                        </a>
+                        </Link>
                     </li>
                     {isAuthenticated && (
                         <li>

@@ -119,7 +119,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("1234567890")
                 .dateOfBirth(LocalDate.of(2000, 12, 12))
                 .address("Cluj-Napoca, Romania")
-                .pictureUrl("./assets/images/persons/c00.jpg")
+                .pictureUrl("/images/persons/c00.jpg")
                 .build();
         User u1 = User.builder()
                 .email("mihai@makeup.com")
@@ -139,7 +139,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("457898653212")
                 .dateOfBirth(LocalDate.of(1985, 07, 15))
                 .address("NY, US")
-                .pictureUrl("./assets/images/professionals/professional_03.jpg")
+                .pictureUrl("/images/professionals/professional_03.jpg")
                 .build();
         User u2 = User.builder()
                 .email("nadine@makeup.com")
@@ -159,7 +159,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("1223455678")
                 .dateOfBirth(LocalDate.of(1982, 04, 22))
                 .address("CA, US")
-                .pictureUrl("./assets/images/professionals/professional_01.jpg")
+                .pictureUrl("/images/professionals/professional_01.jpg")
                 .build();
         User u3 = User.builder()
                 .email("jane@makeup.com")
@@ -179,7 +179,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("659878451245")
                 .dateOfBirth(LocalDate.of(1989, 11, 2))
                 .address("QC, Canada")
-                .pictureUrl("./assets/images/professionals/professional_05.jpg")
+                .pictureUrl("/images/professionals/professional_05.jpg")
                 .build();
         User u4 = User.builder()
                 .email("kim@makeup.com")
@@ -199,7 +199,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("9685741425")
                 .dateOfBirth(LocalDate.of(1995, 8, 28))
                 .address("Paris, France")
-                .pictureUrl("./assets/images/professionals/professional_04.jpg")
+                .pictureUrl("/images/professionals/professional_04.jpg")
                 .build();
         User u5 = User.builder()
                 .email("angela@makeup.com")
@@ -219,7 +219,7 @@ public class BootstrapData implements CommandLineRunner {
                 .phoneNumber("4145484742")
                 .dateOfBirth(LocalDate.of(1992, 2, 12))
                 .address("Berlin, Germany")
-                .pictureUrl("./assets/images/professionals/professional_02.jpg")
+                .pictureUrl("/images/professionals/professional_02.jpg")
                 .build();
         User u6 = User.builder()
                 .email("jully@makeup.com")

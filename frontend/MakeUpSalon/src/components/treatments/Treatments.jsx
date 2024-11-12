@@ -19,16 +19,18 @@ export default function Treatments({ className }) {
 
     return (
         <div
-            className={`${className} className="flex justify-around align-middle text-center text-3xl font-medium font-serif mt-2 mb-4 text-fuchsia-950`}
+            className={`${className} className="flex justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-3xl`}
         >
-            <h2 className="mb-8">Treatments List</h2>
+            <div className="bg-slate-500 bg-opacity-60 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
+                <h2>Treatments List</h2>
+            </div>
             {status === "loading" && <p>Loading...</p>}
             {status === "failed" && <p>Error: {error}</p>}
             {status === "succeeded" && (
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {treatments.map((treatment) => {
                         return (
-                            <li key={treatment.treatmentId} className="">
+                            <li key={treatment.treatmentId}>
                                 <TreatmentCard treatment={treatment} />
                             </li>
                         );

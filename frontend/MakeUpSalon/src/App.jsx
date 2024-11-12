@@ -6,6 +6,7 @@ import AuthenticationPage from "./pages/Authentication.jsx";
 import SignUpPage from "./pages/SignUp.jsx";
 import RecoverPasswordPage from "./pages/RecoverPassword.jsx";
 import TreatmentsPage from "./pages/Treatments.jsx";
+import ProfessionalsPage from "./pages/Professionals.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: '/treatments',
                 element: <TreatmentsPage/>
+            },
+            {
+                path: '/professionals',
+                element: <ProfessionalsPage/>
             }
         ]
     }
