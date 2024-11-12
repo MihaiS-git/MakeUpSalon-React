@@ -1,6 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../store/auth-slice";
 
 export default function HamburgerMenu({ openState, handleClose }) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+    function handleLogout() {
+        dispatch(logout());
+        navigate("/auth");
+        handleClose();
+    }
+
     return (
         <>
             <div
@@ -9,56 +22,85 @@ export default function HamburgerMenu({ openState, handleClose }) {
             >
                 <ul className="flex flex-col items-center space-y-6 text-lg mx-auto">
                     <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
+                        <Link
+                            to="/treatments"
+                            className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                            onClick={handleClose}
                         >
                             Treatments
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
+                        <Link
+                            to="/professionals"
+                            className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                            onClick={handleClose}
                         >
                             Professionals
-                        </a>
+                        </Link>
                     </li>
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                                onClick={handleClose}
+                            >
+                                Account
+                            </a>
+                        </li>
+                    )}
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                                onClick={handleClose}
+                            >
+                                Appointments
+                            </a>
+                        </li>
+                    )}
+                    {isAuthenticated && (
+                        <li>
+                            <a
+                                href="#"
+                                className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                                onClick={handleClose}
+                            >
+                                Cart
+                            </a>
+                        </li>
+                    )}
                     <li>
                         <a
                             href="#"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
-                        >
-                            Account
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
-                        >
-                            Appointments
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
+                            className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                            onClick={handleClose}
                         >
                             Contact
                         </a>
                     </li>
                     <li>
-                        <NavLink
-                            to="/auth"
-                            className="block w-full p-2 text-center text-gray-50 hover:text-fuchsia-400"
-                            onClick={handleClose}
-                        >
-                            Authentication
-                        </NavLink>
+                        {isAuthenticated ? (
+                            <button
+                                onClick={handleLogout}
+                                className="block w-full px-16 text-center text-slate-200 hover:text-fuchsia-400"
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <NavLink
+                                to="/auth"
+                                className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
+                                onClick={handleClose}
+                            >
+                                Authentication
+                            </NavLink>
+                        )}
                     </li>
                     <button
-                        className="block w-full p-2 text-right font-bold text-gray-50 hover:text-fuchsia-400"
+                        className="block w-full p-2 text-right font-bold text-slate-200 hover:text-fuchsia-400"
                         onClick={handleClose}
                     >
                         X

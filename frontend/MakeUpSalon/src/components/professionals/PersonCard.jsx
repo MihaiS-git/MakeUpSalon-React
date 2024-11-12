@@ -1,6 +1,6 @@
-export default function PersonCard({ employee }) {
+export default function PersonCard({ employee, onClick }) {
     return (
-        <div className="border border-slate-400 rounded-lg shadow-lg h-full text-clip bg-fuchsia-900">            
+        <div className="border border-slate-200 rounded-lg shadow-[2px_2px_6px] shadow-fuchsia-950 h-full text-clip bg-fuchsia-900 cursor-pointer" onClick={onClick}>            
             <img
                 src={employee.person.pictureUrl}
                 alt={employee.person.firstName}
