@@ -12,7 +12,7 @@ export default function SignUpForm({ className }) {
     const [phone, setPhone] = useState("");
     const navigate = useNavigate();
 
-    async function handleSubmit() {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         if (password !== password) {
@@ -44,10 +44,10 @@ export default function SignUpForm({ className }) {
             if (response.ok) {
                 const data = await response.json();
                 console.log("Registration successfull!", data);
-                navigate('/auth')
+                navigate('/auth');
             } else {
                 console.error("Registration failed!");
-                alert("Registration failed!")
+                alert("Registration failed!");
             }
         } catch (error) { 
             console.error("Error: ", error);
@@ -56,7 +56,7 @@ export default function SignUpForm({ className }) {
     }
 
     return (
-        <Form method="post" className={className} onSubmit={handleSubmit}>
+        <Form method="post" className={className} onSubmit={(e) => handleSubmit(e)}>
             <h1 className="text-center text-3xl font-medium mt-2 mb-4 text-fuchsia-950">
                 Sign Up Form
             </h1>

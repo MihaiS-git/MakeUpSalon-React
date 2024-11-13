@@ -80,6 +80,7 @@ public class AuthenticationService {
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
+                .user(user)
                 .build();
     }
 }

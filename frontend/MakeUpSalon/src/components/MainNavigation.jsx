@@ -39,16 +39,6 @@ export default function MainNavigation() {
                                 href="#"
                                 className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                             >
-                                Account
-                            </a>
-                        </li>
-                    )}
-                    {isAuthenticated && (
-                        <li>
-                            <a
-                                href="#"
-                                className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
-                            >
                                 Appointments
                             </a>
                         </li>
@@ -61,6 +51,16 @@ export default function MainNavigation() {
                             >
                                 Cart
                             </a>
+                        </li>
+                    )}
+                    {isAuthenticated && (
+                        <li>
+                            <Link
+                                to="/myAccount"
+                                className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
+                            >
+                                Account
+                            </Link>
                         </li>
                     )}
                     <li>

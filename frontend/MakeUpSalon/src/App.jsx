@@ -9,6 +9,7 @@ import TreatmentsPage from "./pages/Treatments.jsx";
 import ProfessionalsPage from "./pages/Professionals.jsx";
 import EmployeeTreatmentsPage from "./pages/EmployeeTreatments.jsx";
 import ContactPage from "./pages/Contact.jsx";
+import AccountPage from "./pages/Account.jsx";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: "professionals/:id/treatments",
                 element: <EmployeeTreatmentsPage />,
+            },
+            {
+                path: "myAccount",
+                element: <AccountPage/>
             },
             {
                 path: "contact",
