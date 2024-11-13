@@ -26,9 +26,9 @@ export default function Professionals({ className }) {
 
     return (
         <div
-            className={`${className} className="flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-3xl`}
+            className={`${className} flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-3xl`}
         >
-            <div className="bg-slate-500 bg-opacity-60 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
+            <div className="bg-slate-500 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
                 <h2>Professionals</h2>
             </div>
 

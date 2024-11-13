@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import MainNavigation from "./MainNavigation.jsx";
 import Hamburger from "./Hamburger.jsx";
+import Footer from "./Footer.jsx";
 
 export default function Header() {
     return (
@@ -13,6 +14,7 @@ export default function Header() {
             </Link>
             <MainNavigation />
             <Hamburger />
+            <Footer/>
         </header>
     );
 }

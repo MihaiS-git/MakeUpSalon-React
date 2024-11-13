@@ -64,12 +64,12 @@ export default function MainNavigation() {
                         </li>
                     )}
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            to="/contact"
                             className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                         >
                             Contact
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         {isAuthenticated ? (
