@@ -11,7 +11,7 @@ export default function Account({ className }) {
             <div className="bg-slate-500 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
                 <h2>Your Account Info</h2>
             </div>
-            <AccountForm id={user.userId} />
+            <AccountForm id={user.userId} className="object-center"/>
         </div>
     );
 }

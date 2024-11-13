@@ -5,7 +5,7 @@ import { fetchPerson } from "../../store/person-slice";
 
 const BASE_URL = "http://localhost:8080/api";
 
-export default function AccountForm({ id }) {
+export default function AccountForm({ id, className }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -86,80 +86,89 @@ export default function AccountForm({ id }) {
     return (
         <>
             <p>
-                <button onClick={handleEdit}>Edit</button>
+                <img src={pictureUrl} alt={firstName} className="w-96 h-96 mb-8"/>
             </p>
-            <Form method="PUT" onSubmit={(e) => handleSubmit(e)}>
-                <p>
-                    <label htmlFor="firstName">First Name</label>
+            <p className="text-right">
+                <button onClick={handleEdit} className="bg-slate-400 py-1 px-8 rounded-lg border border-fuchsia-950 shadow-lg text-base font-semibold">Edit</button>
+            </p>
+            <Form method="PUT" onSubmit={(e) => handleSubmit(e)} className={className}>
+                <p className="text-left">
+                    <label htmlFor="firstName" className="text-lg text-fuchsia-950">First Name</label>
                     <input
                         type="text"
                         id="firstName"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="firstName"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
-                    <label htmlFor="firstName">Last Name</label>
+                <p className="text-left">
+                    <label htmlFor="firstName" className="text-lg text-fuchsia-950">Last Name</label>
                     <input
                         type="text"
                         id="lastName"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="lastName"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
-                    <label htmlFor="phoneNumber">Phone</label>
+                <p className="text-left">
+                    <label htmlFor="phoneNumber" className="text-lg text-fuchsia-950">Phone</label>
                     <input
                         type="text"
                         id="phoneNumber"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="phoneNumber"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
-                    <label htmlFor="dateOfBirth">Date of birth</label>
+                <p className="text-left">
+                    <label htmlFor="dateOfBirth" className="text-lg text-fuchsia-950">Date of birth</label>
                     <input
                         type="date"
                         id="dateOfBirth"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="dateOfBirth"
                         value={dateOfBirth}
                         onChange={(e) => setDateOfBirth(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
-                    <label htmlFor="address">Date of birth</label>
+                <p className="text-left">
+                    <label htmlFor="address" className="text-lg text-fuchsia-950">Address</label>
                     <input
                         type="text"
                         id="address"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
-                    <label htmlFor="pictureUrl">Picture url</label>
+                <p className="text-left mb-8">
+                    <label htmlFor="pictureUrl" className="text-lg text-fuchsia-950">Picture url</label>
                     <input
                         type="text"
                         id="pictureUrl"
+                        className="text-lg w-full px-4 py-2 my-2 border rounded-md focus:outline-none focus:border-fuchsia-400 focus:border-2"
                         name="pictureUrl"
                         value={pictureUrl}
                         onChange={(e) => setPictureUrl(e.target.value)}
                         disabled={!isEditMode}
                     />
                 </p>
-                <p>
+                <p className="text-left">
                     {isEditMode && (
                         <button
                             type="submit"
-                            className="w-full py-2 my-2 rounded-md text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200"
+                            className="w-full py-2 my-2 rounded-md text-lg text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200"
                         >
                             Save
                         </button>
