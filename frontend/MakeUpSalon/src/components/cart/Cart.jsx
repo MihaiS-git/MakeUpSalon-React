@@ -9,16 +9,10 @@ export default function Cart({ className }) {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
 
-    console.log("ITEMS in Cart: ", items);
-    
     const customerId = user?.userId;
     const treatmentId = items[0]?.treatmentId;
     const employeeId = items[0]?.employeeIds[0];
     
-    console.log("ITEMS[0]: ", items[0]);
-    console.log("Employee ID :", employeeId);
-    
-
     const isReadyToSave =
         customerId && treatmentId && employeeId && appointmentDateTime;
 
@@ -38,12 +32,10 @@ export default function Cart({ className }) {
             employeeId,
             treatmentId,
         };
-        console.log("appointmentRequestDto: ", appointmentRequestDto);
-        
         dispatch(saveAppointment(appointmentRequestDto));
     }
 
-    const { loading, error } = useSelector((state) => state.appointment);
+    const { loading, error } = useSelector((state) => state.appointments);
 
     return (
         <div
@@ -114,3 +106,4 @@ export default function Cart({ className }) {
         </div>
     );
 }
+//TODO clear cart

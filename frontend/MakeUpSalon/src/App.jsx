@@ -11,6 +11,7 @@ import EmployeeTreatmentsPage from "./pages/EmployeeTreatments.jsx";
 import ContactPage from "./pages/Contact.jsx";
 import AccountPage from "./pages/Account.jsx";
 import CartPage from "./pages/Cart.jsx";
+import AppointmentsPage from "./pages/Appointments.jsx";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: "cart",
                 element: <CartPage/>
+            },
+            {
+                path: "appointments",
+                element: <AppointmentsPage/>
             }
         ],
     },

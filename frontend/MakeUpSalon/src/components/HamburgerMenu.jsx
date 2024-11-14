@@ -52,13 +52,13 @@ export default function HamburgerMenu({ openState, handleClose }) {
                     )}
                     {isAuthenticated && (
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to="/appointments"
                                 className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
                                 onClick={handleClose}
                             >
                                 Appointments
-                            </a>
+                            </Link>
                         </li>
                     )}
                     {isAuthenticated && (

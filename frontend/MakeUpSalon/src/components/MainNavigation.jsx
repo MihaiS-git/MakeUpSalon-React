@@ -35,12 +35,12 @@ export default function MainNavigation() {
                     </li>
                     {isAuthenticated && (
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to="/appointments"
                                 className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                             >
                                 Appointments
-                            </a>
+                            </Link>
                         </li>
                     )}
                     {isAuthenticated && (
