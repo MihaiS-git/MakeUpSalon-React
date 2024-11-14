@@ -48,6 +48,9 @@ public class TreatmentController {
             List<TreatmentDto> treatmentDtos = treatments.stream()
                     .map(treatmentConverter::convertModelToDto)
                     .collect(Collectors.toList());
+
+            System.out.println(treatmentDtos);
+
             return ResponseEntity.ok(treatmentDtos);
         } catch (DataBaseOperationException e) {
             return ResponseEntity.notFound().build();

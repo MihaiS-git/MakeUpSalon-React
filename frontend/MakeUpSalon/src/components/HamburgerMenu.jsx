@@ -41,13 +41,13 @@ export default function HamburgerMenu({ openState, handleClose }) {
                     </li>
                     {isAuthenticated && (
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to="/myAccount"
                                 className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
                                 onClick={handleClose}
                             >
                                 Account
-                            </a>
+                            </Link>
                         </li>
                     )}
                     {isAuthenticated && (
@@ -63,13 +63,13 @@ export default function HamburgerMenu({ openState, handleClose }) {
                     )}
                     {isAuthenticated && (
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to="/cart"
                                 className="block w-full p-2 text-center text-slate-200 hover:text-fuchsia-400"
                                 onClick={handleClose}
                             >
                                 Cart
-                            </a>
+                            </Link>
                         </li>
                     )}
                     <li>

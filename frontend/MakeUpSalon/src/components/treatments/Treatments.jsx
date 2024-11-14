@@ -11,6 +11,9 @@ export default function Treatments({ className }) {
         error,
     } = useSelector((state) => state.treatments);
 
+    console.log("TREATMENTS items: ", treatments);
+    
+
     useEffect(() => {
         if (status === "idle") {
             dispatch(fetchTreatments());

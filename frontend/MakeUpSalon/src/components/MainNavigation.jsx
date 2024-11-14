@@ -45,12 +45,12 @@ export default function MainNavigation() {
                     )}
                     {isAuthenticated && (
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to="/cart"
                                 className="block w-full p-2 text-center text-slate-400 hover:text-fuchsia-400"
                             >
                                 Cart
-                            </a>
+                            </Link>
                         </li>
                     )}
                     {isAuthenticated && (

@@ -272,52 +272,81 @@ public class BootstrapData implements CommandLineRunner {
                 .treatment(t1)
                 .employee(p6)
                 .build();
+        employeeTreatmentRepository.save(et1);
+        t1.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(0));
+        p6.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(0));
+
         EmployeeTreatment et2 = EmployeeTreatment.builder()
                 .treatment(t2)
                 .employee(p6)
                 .build();
+        employeeTreatmentRepository.save(et2);
+        t2.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(1));
+        p6.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(1));
+
         EmployeeTreatment et3 = EmployeeTreatment.builder()
                 .treatment(t3)
                 .employee(p5)
                 .build();
+        employeeTreatmentRepository.save(et3);
+        t3.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(2));
+        p5.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(2));
+
         EmployeeTreatment et4 = EmployeeTreatment.builder()
                 .treatment(t4)
                 .employee(p5)
                 .build();
+        employeeTreatmentRepository.save(et4);
+        t4.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(3));
+        p5.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(3));
+
         EmployeeTreatment et5 = EmployeeTreatment.builder()
                 .treatment(t5)
                 .employee(p4)
                 .build();
+        employeeTreatmentRepository.save(et5);
+        t5.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(4));
+        p4.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(4));
+
         EmployeeTreatment et6 = EmployeeTreatment.builder()
                 .treatment(t6)
                 .employee(p4)
                 .build();
+        employeeTreatmentRepository.save(et6);
+        t6.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(5));
+        p4.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(5));
+
         EmployeeTreatment et7 = EmployeeTreatment.builder()
                 .treatment(t7)
                 .employee(p3)
                 .build();
+        employeeTreatmentRepository.save(et7);
+        t7.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(6));
+        p3.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(6));
+
         EmployeeTreatment et8 = EmployeeTreatment.builder()
                 .treatment(t8)
                 .employee(p3)
                 .build();
+        employeeTreatmentRepository.save(et8);
+        t8.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(7));
+        p3.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(7));
+
         EmployeeTreatment et9 = EmployeeTreatment.builder()
                 .treatment(t9)
                 .employee(p2)
                 .build();
+        employeeTreatmentRepository.save(et9);
+        t9.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(8));
+        p2.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(8));
+
         EmployeeTreatment et10 = EmployeeTreatment.builder()
                 .treatment(t10)
                 .employee(p2)
                 .build();
-
-        employeeTreatmentRepository.save(et1);
-        employeeTreatmentRepository.save(et2);
-        employeeTreatmentRepository.save(et3);
-        employeeTreatmentRepository.save(et4);
-        employeeTreatmentRepository.save(et5);
-        employeeTreatmentRepository.save(et6);
-        employeeTreatmentRepository.save(et7);
-        employeeTreatmentRepository.save(et8);
-        employeeTreatmentRepository.save(et9);
         employeeTreatmentRepository.save(et10);
+        t10.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(9));
+        p2.getEmployeeTreatments().add(employeeTreatmentRepository.findAll().get(9));
+
     }
 }

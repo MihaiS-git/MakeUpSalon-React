@@ -34,7 +34,7 @@ public class TreatmentConverter {
 
     public TreatmentDto convertModelToDto(Treatment treatment) {
         List<Integer> employeeIds = treatment.getEmployeeTreatments().stream()
-                .map(employeeTreatment -> employeeTreatment.getEmployeeTreatmentsId())
+                .map(employeeTreatment -> employeeTreatment.getEmployee().getPersonId())
                 .collect(Collectors.toList());
 
         return TreatmentDto.builder()
