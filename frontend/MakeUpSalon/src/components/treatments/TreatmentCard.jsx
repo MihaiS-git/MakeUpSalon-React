@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cart-slice";
+import { useNavigate } from "react-router-dom";
 
-export default function TreatmentCard({ treatment }) {
-    
+export default function TreatmentCard({ treatment, employeeId }) {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -13,8 +14,17 @@ export default function TreatmentCard({ treatment }) {
 
     function handleAddToCart() {
         if (isAuthenticated) {
-            
-            dispatch(addToCart(treatment));
+            if (!treatment.employeeIds) { 
+                const newTreatment = {
+                    ...treatment,
+                    employeeIds: [+employeeId]
+                };
+                dispatch(addToCart(newTreatment));
+                navigate('/cart');
+            } else {
+                dispatch(addToCart(treatment));
+                navigate('/cart');
+            }
         }
     }
 

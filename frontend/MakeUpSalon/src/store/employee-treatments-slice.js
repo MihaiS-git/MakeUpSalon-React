@@ -26,17 +26,15 @@ const employeeTreatmentsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchEmployeeTreatments.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.status = 'loading';
             })
             .addCase(fetchEmployeeTreatments.fulfilled, (state, action) => {
-                state.loading = false;
+                state.status = 'succeeded';
                 state.items = action.payload;
-                console.log("EmployeeTreatments fetched: ", state.items);
             })
             .addCase(fetchEmployeeTreatments.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
+                state.status = 'failed';
+                state.error = action.error.message;
             });
     }
 });

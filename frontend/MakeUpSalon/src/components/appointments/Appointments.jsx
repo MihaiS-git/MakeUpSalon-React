@@ -49,76 +49,68 @@ export default function Appointments({ className }) {
 
     function handleRemoveAppointment(appointment) {
         dispatch(removeAppointment(appointment));
-        //TODO rerender list
     }
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    let i = 1;
+
     return (
         <div
-            className={`${className} flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-3xl w-full p-4`}
+            className={`${className} flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif text-fuchsia-950 text-3xl w-full p-4`}
         >
             <div className="bg-slate-500 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
                 <h2>Your Appointments</h2>
             </div>
-            <table className="bg-slate-400 text-lg text-center mx-auto w-full">
-                <thead className="bg-fuchsia-600">
-                    <tr>
-                        <th>#ID</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Date created</th>
-                        <th>Status</th>
-                        <th>Employee</th>
-                        <th>Treatment</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {updatedAppointments &&
-                        updatedAppointments.map((appointment) => (
-                            <tr
-                                key={appointment.appointmentId}
-                                className="w-full"
-                            >
-                                <td className="p-2">
-                                    {appointment.treatmentId}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.startDateTime}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.endDateTime}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.dateCreated}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.approvalStatus}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.employee ? `${appointment.employee.firstName} ${appointment.employee.lastName}` : "Loading..."}
-                                </td>
-                                <td className="p-2">
-                                    {appointment.treatment
-                                        ? appointment.treatment.name
-                                        : "Loading..."}
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() =>
-                                            handleRemoveAppointment(appointment)
-                                        }
-                                        className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-400 text-fuchsia-800 hover:bg-fuchsia-800 hover:text-fuchsia-400"
-                                    >
-                                        X
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
+            <div className="overflow-x-auto">
+                <table className="bg-slate-400 text-lg text-center mx-auto w-full">
+                    <thead className="bg-fuchsia-600">
+                        <tr>
+                            <th className="p-1 text-base">#</th>
+                            <th className="p-1 text-base">Start</th>
+                            <th className="p-1 text-base">End</th>
+                            <th className="p-1 text-base">Date created</th>
+                            <th className="p-1 text-base">Status</th>
+                            <th className="p-1 text-base">Employee</th>
+                            <th className="p-1 text-base">Treatment</th>
+                            <th className="p-1 text-base">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {updatedAppointments &&
+                            updatedAppointments.map((appointment) => (
+                                <tr key={appointment.appointmentId}>
+                                    <td className="p-1 text-base">{i++}</td>
+                                    <td className="p-1 text-base">{appointment.startDateTime}</td>
+                                    <td className="p-1 text-base">{appointment.endDateTime}</td>
+                                    <td className="p-1 text-base">{appointment.dateCreated}</td>
+                                    <td className="p-1 text-base">{appointment.approvalStatus}</td>
+                                    <td className="p-1 text-base">
+                                        {appointment.employee
+                                            ? `${appointment.employee.firstName} ${appointment.employee.lastName}`
+                                            : "Loading..."}
+                                    </td>
+                                    <td className="p-1 text-base">
+                                        {appointment.treatment
+                                            ? appointment.treatment.name
+                                            : "Loading..."}
+                                    </td>
+                                    <td className="p-1 text-base">
+                                        <button
+                                            onClick={() =>
+                                                handleRemoveAppointment(appointment)
+                                            }
+                                            className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-400 text-fuchsia-800 hover:bg-fuchsia-800 hover:text-fuchsia-400"
+                                        >
+                                            X
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

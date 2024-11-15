@@ -89,7 +89,7 @@ export default function AccountForm({ id, className }) {
                 <img src={pictureUrl} alt={firstName} className="w-96 h-96 mb-8"/>
             </p>
             <p className="text-right">
-                <button onClick={handleEdit} className="bg-slate-400 py-1 px-8 rounded-lg border border-fuchsia-950 shadow-lg text-base font-semibold">Edit</button>
+                <button onClick={handleEdit} className="bg-fuchsia-200 hover:bg-fuchsia-800 text-fuchsia-800 hover:text-fuchsia-200 py-1 px-8 rounded-lg border border-fuchsia-950 shadow-lg text-base font-semibold">Edit</button>
             </p>
             <Form method="PUT" onSubmit={(e) => handleSubmit(e)} className={className}>
                 <p className="text-left">
@@ -168,7 +168,7 @@ export default function AccountForm({ id, className }) {
                     {isEditMode && (
                         <button
                             type="submit"
-                            className="w-full py-2 my-2 rounded-md text-lg text-fuchsia-200 hover:text-fuchsia-950 bg-fuchsia-950 hover:bg-fuchsia-200"
+                            className="bg-fuchsia-200 hover:bg-fuchsia-800 text-fuchsia-800 hover:text-fuchsia-200 py-1 px-8 rounded-lg border border-fuchsia-950 shadow-lg text-base font-semibold w-full"
                         >
                             Save
                         </button>

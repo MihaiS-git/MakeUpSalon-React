@@ -1,18 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../store/cart-slice";
+import { clearCart, removeFromCart } from "../../store/cart-slice";
 import { useState } from "react";
 import { saveAppointment } from "../../store/appointments-slice.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ className }) {
     const [appointmentDateTime, setAppointmentDateTime] = useState("");
     const { items, totalPrice } = useSelector((state) => state.cart);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const customerId = user?.userId;
     const treatmentId = items[0]?.treatmentId;
     const employeeId = items[0]?.employeeIds[0];
-    
+
     const isReadyToSave =
         customerId && treatmentId && employeeId && appointmentDateTime;
 
@@ -33,6 +35,8 @@ export default function Cart({ className }) {
             treatmentId,
         };
         dispatch(saveAppointment(appointmentRequestDto));
+        dispatch(clearCart());
+        navigate("/appointments");
     }
 
     const { loading, error } = useSelector((state) => state.appointments);
@@ -45,6 +49,7 @@ export default function Cart({ className }) {
             <div className="bg-slate-500 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
                 <h2>Your Cart</h2>
             </div>
+
             <table className="bg-slate-400 text-lg text-center mx-auto w-full">
                 <thead className="bg-fuchsia-600">
                     <tr>
@@ -56,6 +61,11 @@ export default function Cart({ className }) {
                     </tr>
                 </thead>
                 <tbody>
+                    {items.length === 0 && (
+                        <tr>
+                            <td colSpan="5"><p className="font-base text-3xl">Cart is empty</p></td>
+                        </tr>
+                    )}
                     {items &&
                         items.map((treatment) => (
                             <tr key={treatment.treatmentId} className="w-full">
@@ -106,4 +116,3 @@ export default function Cart({ className }) {
         </div>
     );
 }
-//TODO clear cart
