@@ -12,6 +12,7 @@ import ContactPage from "./pages/Contact.jsx";
 import AccountPage from "./pages/Account.jsx";
 import CartPage from "./pages/Cart.jsx";
 import AppointmentsPage from "./pages/Appointments.jsx";
+import useTokenExpirationChecker from "./util/tokenExpirationChecker.js";
 
 const router = createBrowserRouter([
     {
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+    useTokenExpirationChecker();
     return <RouterProvider router={router} />;
 }
 
