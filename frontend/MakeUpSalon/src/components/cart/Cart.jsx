@@ -48,21 +48,21 @@ export default function Cart({ className }) {
             </div>
 
             <table className="bg-slate-400 text-lg text-center mx-auto w-full">
-                <thead className="bg-fuchsia-600">
+                <thead className="bg-fuchsia-900 text-slate-400">
                     <tr>
-                        <th>#ID</th>
-                        <th>Treatment</th>
-                        <th>Date & Time</th>
-                        <th>Price</th>
-                        <th>Remove</th>
+                        <th className="p-1 text-base border border-slate-400">#ID</th>
+                        <th className="p-1 text-base border border-slate-400">Treatment</th>
+                        <th className="p-1 text-base border border-slate-400">Date & Time</th>
+                        <th className="p-1 text-base border border-slate-400">Price</th>
+                        <th className="p-1 text-base border border-slate-400">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
                     {items.length === 0 && (
                         <tr>
                             <td colSpan="5">
-                                <p className="font-base text-3xl">
-                                    Cart is empty
+                                <p className="font-base text-xl p-16">
+                                    Cart is empty. Maybe select a new treatment.
                                 </p>
                             </td>
                         </tr>
@@ -70,9 +70,9 @@ export default function Cart({ className }) {
                     {items &&
                         items.map((treatment) => (
                             <tr key={treatment.treatmentId} className="w-full">
-                                <td className="p-2">{treatment.treatmentId}</td>
-                                <td className="p-2">{treatment.name}</td>
-                                <td className="p-2">
+                                <td className="p-1 text-base border border-fuchsia-900">{treatment.treatmentId}</td>
+                                <td className="p-1 text-base border border-fuchsia-900">{treatment.name}</td>
+                                <td className="p-1 text-base border border-fuchsia-900">
                                     <input
                                         type="datetime-local"
                                         className="rounded"
@@ -85,13 +85,13 @@ export default function Cart({ className }) {
                                         }
                                     />
                                 </td>
-                                <td>${treatment.price}</td>
-                                <td>
+                                <td className="p-1 text-base border border-fuchsia-900">${treatment.price}</td>
+                                <td className="p-1 text-base border border-fuchsia-900">
                                     <button
                                         onClick={() =>
                                             handleRemoveFromCart(treatment)
                                         }
-                                        className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-400 text-fuchsia-800 hover:bg-fuchsia-800 hover:text-fuchsia-400"
+                                        className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-900 text-slate-400 hover:bg-slate-500 hover:text-fuchsia-900 border border-fuchsia-900"
                                     >
                                         X
                                     </button>
@@ -99,7 +99,7 @@ export default function Cart({ className }) {
                             </tr>
                         ))}
                 </tbody>
-                <tfoot className="bg-fuchsia-600 font-bold">
+                <tfoot className="bg-fuchsia-900 text-slate-400 font-bold">
                     <tr>
                         <th colSpan="3">Total Price: </th>
                         <td colSpan="2">${totalPrice}</td>
@@ -108,7 +108,7 @@ export default function Cart({ className }) {
             </table>
             <button
                 onClick={handleSaveAppointment}
-                className="text-lg rounded p-1 mt-8 w-64 mx-auto bg-fuchsia-400 text-fuchsia-950 hover:bg-fuchsia-950 hover:text-fuchsia-400"
+                className="text-lg rounded p-1 mt-8 w-64 mx-auto bg-fuchsia-900 text-slate-400 hover:bg-slate-500 hover:text-fuchsia-900 border border-fuchsia-900"
                 disabled={!isReadyToSave || loading}
             >
                 {loading ? "Saving..." : "Save Appointment"}
