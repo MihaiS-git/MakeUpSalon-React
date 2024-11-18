@@ -9,11 +9,14 @@ export default function Professionals({ className }) {
     const { employees, loading, error } = useSelector(
         (state) => state.employees
     );
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(fetchEmployees());
-    }, [dispatch]);
+        if (employees.length === 0) {   
+            dispatch(fetchEmployees());
+        }
+    }, [dispatch, employees.length]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;

@@ -1,10 +1,7 @@
-import { useParams } from "react-router-dom";
 import PageContent from "../components/PageContent.jsx";
 import EmployeeTreatments from "../components/professionals/EmployeeTreatments";
 
 export default function EmployeeTreatmentsPage() {
-    const { id: personId } = useParams;
-    console.log("Employee ID:", personId); 
 
     return (
         <div className="min-h-screen overflow-auto">

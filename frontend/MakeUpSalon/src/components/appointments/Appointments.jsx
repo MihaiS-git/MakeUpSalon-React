@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { removeAppointment } from "../../store/appointments-slice";
+import {
+    deleteAppointment,
+    fetchAppointmentsByPersonId,
+    updateAppointment,
+} from "../../store/appointments-slice";
+import { format } from 'date-fns';
 
 export default function Appointments({ className }) {
     const dispatch = useDispatch();
@@ -8,7 +13,15 @@ export default function Appointments({ className }) {
     const { appointments, loading, error } = useSelector(
         (state) => state.appointments
     );
-    const token = useSelector((state) => state.auth.token);
+    const auth = useSelector((state) => state.auth);
+    const role = auth?.user?.role;
+    const customerId = auth?.user?.userId;
+
+    useEffect(() => {
+        if (customerId) {
+            dispatch(fetchAppointmentsByPersonId(customerId));
+        }
+    }, [dispatch, customerId]);
 
     useEffect(() => {
         const fetchEmployeeAndTreatment = async () => {
@@ -18,8 +31,8 @@ export default function Appointments({ className }) {
                         `http://localhost:8080/api/persons/id/${appointment.employeeId}`,
                         {
                             headers: {
-                                Authorization: `Bearer ${token}`
-                            }
+                                Authorization: `Bearer ${auth.token}`,
+                            },
                         }
                     );
                     if (!employeeResponse.ok) {
@@ -45,11 +58,59 @@ export default function Appointments({ className }) {
         if (appointments.length > 0) {
             fetchEmployeeAndTreatment();
         }
-    }, [appointments, token]);
+    }, [appointments, auth.token]);
 
-    function handleRemoveAppointment(appointment) {
-        dispatch(removeAppointment(appointment));
+    function handleApprovalStatusChange(appointmentId, newStatus) {
+        setUpdatedAppointments((prevAppointments) =>
+            prevAppointments.map((appointment) =>
+                appointment.appointmentId === appointmentId
+                    ? { ...appointment, approvalStatus: newStatus }
+                    : appointment
+            )
+        );
     }
+
+    function handleStartDateChange(appointmentId, newStartDate) {
+        setUpdatedAppointments((prevAppointments) =>
+            prevAppointments.map((appointment) =>
+                appointment.appointmentId === appointmentId
+                    ? {
+                          ...appointment,
+                          startDateTime: newStartDate,
+                      }
+                    : appointment
+            )
+        );
+    }
+
+    const handleUpdateAppointment = async (appointment) => {
+        const appointmentId = appointment.appointmentId;
+        const requestBody = {
+            customerId: appointment.customerId,
+            startDateTime: format(
+                new Date(appointment.startDateTime),
+                "yyyy-MM-dd HH:mm:ss"
+            ),
+            approvalStatus: appointment.approvalStatus,
+            employeeId: appointment.employeeId,
+            treatmentId: appointment.treatmentId,
+        };
+
+        try {
+            await dispatch(updateAppointment({ appointmentId, requestBody }));
+            console.log("Appointment updated successfully!");
+        } catch (error) {
+            console.error("Error updating appointment:", error);
+        }
+    };
+
+    const handleRemoveAppointment = async (appointmentId) => {
+        try {
+            await dispatch(deleteAppointment(appointmentId));
+        } catch (error) {
+            console.error("Error deleting appointment:", error);
+        }
+    };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -65,49 +126,137 @@ export default function Appointments({ className }) {
             </div>
             <div className="overflow-x-auto">
                 <table className="bg-slate-400 text-lg text-center mx-auto w-full">
-                    <thead className="bg-fuchsia-600">
+                    <thead className="bg-fuchsia-900 text-slate-400">
                         <tr>
-                            <th className="p-1 text-base">#</th>
-                            <th className="p-1 text-base">Start</th>
-                            <th className="p-1 text-base">End</th>
-                            <th className="p-1 text-base">Date created</th>
-                            <th className="p-1 text-base">Status</th>
-                            <th className="p-1 text-base">Employee</th>
-                            <th className="p-1 text-base">Treatment</th>
-                            <th className="p-1 text-base">Remove</th>
+                            <th className="p-1 text-base border border-slate-400">
+                                #
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Start
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                End
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Date created
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Status
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Employee
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Treatment
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Update
+                            </th>
+                            <th className="p-1 text-base border border-slate-400">
+                                Remove
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {updatedAppointments &&
-                            updatedAppointments.map((appointment) => (
-                                <tr key={appointment.appointmentId}>
-                                    <td className="p-1 text-base">{i++}</td>
-                                    <td className="p-1 text-base">{appointment.startDateTime}</td>
-                                    <td className="p-1 text-base">{appointment.endDateTime}</td>
-                                    <td className="p-1 text-base">{appointment.dateCreated}</td>
-                                    <td className="p-1 text-base">{appointment.approvalStatus}</td>
-                                    <td className="p-1 text-base">
-                                        {appointment.employee
-                                            ? `${appointment.employee.firstName} ${appointment.employee.lastName}`
-                                            : "Loading..."}
-                                    </td>
-                                    <td className="p-1 text-base">
-                                        {appointment.treatment
-                                            ? appointment.treatment.name
-                                            : "Loading..."}
-                                    </td>
-                                    <td className="p-1 text-base">
-                                        <button
-                                            onClick={() =>
-                                                handleRemoveAppointment(appointment)
+                        {updatedAppointments.length === 0 && (
+                            <tr>
+                                <td colSpan="9">
+                                    <p className="font-base text-xl p-16">
+                                        There are no appointments yet. Maybe
+                                        create a new one.
+                                    </p>
+                                </td>
+                            </tr>
+                        )}
+                        {updatedAppointments.map((appointment) => (
+                            <tr key={appointment.appointmentId}>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {i++}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {role === "CUSTOMER" ? (
+                                        <input
+                                            type="datetime-local"
+                                            value={appointment.startDateTime}
+                                            onChange={(e) =>
+                                                handleStartDateChange(
+                                                    appointment.appointmentId,
+                                                    e.target.value
+                                                )
                                             }
-                                            className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-400 text-fuchsia-800 hover:bg-fuchsia-800 hover:text-fuchsia-400"
+                                        />
+                                    ) : (
+                                        appointment.startDateTime
+                                    )}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {appointment.endDateTime}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {appointment.dateCreated}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {role === "EMPLOYEE" ? (
+                                        <select
+                                            value={appointment.approvalStatus}
+                                            onChange={(e) =>
+                                                handleApprovalStatusChange(
+                                                    appointment.appointmentId,
+                                                    e.target.value
+                                                )
+                                            }
                                         >
-                                            X
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                            <option value="APPROVED">
+                                                APPROVED
+                                            </option>
+                                            <option value="PENDING">
+                                                PENDING
+                                            </option>
+                                            <option value="REJECTED">
+                                                REJECTED
+                                            </option>
+                                            <option value="EXPIRED">
+                                                EXPIRED
+                                            </option>
+                                        </select>
+                                    ) : (
+                                        appointment.approvalStatus
+                                    )}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {appointment.employee
+                                        ? `${appointment.employee.firstName} ${appointment.employee.lastName}`
+                                        : "Loading..."}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    {appointment.treatment
+                                        ? appointment.treatment.name
+                                        : "Loading..."}
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    <button
+                                        onClick={() =>
+                                            handleUpdateAppointment(appointment)
+                                        }
+                                        className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-900 text-slate-400 hover:bg-slate-500 hover:text-fuchsia-900 border border-fuchsia-900"
+                                    >
+                                        Update
+                                    </button>
+                                </td>
+                                <td className="p-1 text-base border border-fuchsia-900">
+                                    <button
+                                        onClick={() =>
+                                            handleRemoveAppointment(
+                                                appointment.appointmentId
+                                            )
+                                        }
+                                        className="0 text-base font-bold px-2 py-0 m-2 rounded my-4 bg-fuchsia-900 text-slate-400 hover:bg-slate-500 hover:text-fuchsia-900 border border-fuchsia-900"
+                                    >
+                                        X
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
