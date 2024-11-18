@@ -38,6 +38,14 @@ export default function Cart({ className }) {
 
     const { loading, error } = useSelector((state) => state.appointments);
 
+    if (loading) return <div>Loading...</div>;
+    if (error)
+        return (
+            <div className="bg-slate-400 rounded-lg p-2 text-fuchsia-600 text-center font-bold text-lg mb-4">
+                {error}
+            </div>
+        );
+
     return (
         <div
             className={`${className} flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-3xl w-full p-4`}

@@ -19,7 +19,12 @@ export default function Professionals({ className }) {
     }, [dispatch, employees.length]);
 
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (error)
+        return (
+            <div className="bg-slate-400 rounded-lg p-2 text-fuchsia-600 text-center font-bold text-lg mb-4">
+                {error}
+            </div>
+        );
 
     function handleSelectProfessional(personId, fullName) {
         navigate(`/professionals/${personId}/treatments`, {

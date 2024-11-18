@@ -17,6 +17,13 @@ export default function Treatments({ className }) {
         }
     }, [status, dispatch]);
 
+    if (error)
+        return (
+            <div className="bg-slate-400 rounded-lg p-2 text-fuchsia-600 text-center font-bold text-lg mb-4">
+                {error}
+            </div>
+        );
+
     return (
         <div
             className={`${className} flex flex-col justify-around align-middle text-center mt-2 font-medium font-serif  text-fuchsia-950 text-2xl sm:text-3xl`}
