@@ -46,6 +46,8 @@ export const saveAppointment = createAsyncThunk(
             });
 
             if (!response.ok) {
+                console.log("REAPONSE: ", response);
+
                 const errorMessage = response.status === 400
                     ? "Unable to create appointment. Please check the provided details."
                     : "Something went wrong. Please try again.";
@@ -80,8 +82,8 @@ export const updateAppointment = createAsyncThunk(
             );
 
             if (!response.ok) {
-                const errorMessage = response.status === 400
-                    ? "Unable to update appointment. Please check the provided details."
+                const errorMessage = response.status === 404
+                    ? "Unable to update appointment. The selected employee is not available."
                     : "Something went wrong. Please try again.";
                 return rejectWithValue(errorMessage);
             }

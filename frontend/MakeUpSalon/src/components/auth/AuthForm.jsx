@@ -6,13 +6,21 @@ import { login } from "../../store/auth-slice";
 export default function AuthForm({ className }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleSubmit(event) { 
         event.preventDefault();
-        dispatch(login({ email, password }));
-        navigate('/home');
+
+        dispatch(login({ email, password }))
+            .unwrap()
+            .then(() => {
+                navigate('/home');
+            })
+            .catch((err) => {
+                setError("Authentication failed. Please check your credentials. ", err);
+            });
     }
 
     return (
@@ -20,6 +28,9 @@ export default function AuthForm({ className }) {
             <h1 className="text-center text-3xl font-medium mt-2 mb-4 text-fuchsia-950">
                 Authentication Form
             </h1>
+
+            {error && <p className="bg-slate-700 rounded-lg font-bold text-center text-fuchsia-500 p-2">{ error }</p>}
+
             <p className="p-2">
                 <label htmlFor="email" className="text-lg text-fuchsia-950">
                     Email

@@ -5,7 +5,7 @@ import {
     fetchAppointmentsByPersonId,
     updateAppointment,
 } from "../../store/appointments-slice";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 export default function Appointments({ className }) {
     const dispatch = useDispatch();
@@ -88,7 +88,7 @@ export default function Appointments({ className }) {
         const requestBody = {
             customerId: appointment.customerId,
             startDateTime: format(
-                new Date(appointment.startDateTime),
+                appointment.startDateTime,
                 "yyyy-MM-dd HH:mm:ss"
             ),
             approvalStatus: appointment.approvalStatus,
@@ -113,7 +113,12 @@ export default function Appointments({ className }) {
     };
 
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (error)
+        return (
+            <div className="bg-slate-400 rounded-lg p-2 text-fuchsia-600 text-center font-bold text-lg mb-4">
+                {error}
+            </div>
+        );
 
     let i = 1;
 
@@ -124,6 +129,7 @@ export default function Appointments({ className }) {
             <div className="bg-slate-500 rounded-3xl mb-10 w-64 sm:w-96 mx-auto">
                 <h2>Your Appointments</h2>
             </div>
+
             <div className="overflow-x-auto">
                 <table className="bg-slate-400 text-lg text-center mx-auto w-full">
                     <thead className="bg-fuchsia-900 text-slate-400">

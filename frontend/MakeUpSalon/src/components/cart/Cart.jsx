@@ -3,6 +3,7 @@ import { clearCart, removeFromCart } from "../../store/cart-slice";
 import { useState } from "react";
 import { saveAppointment } from "../../store/appointments-slice.js";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 export default function Cart({ className }) {
     const [appointmentDateTime, setAppointmentDateTime] = useState("");
@@ -23,13 +24,9 @@ export default function Cart({ className }) {
     }
 
     function handleSaveAppointment() {
-        const formattedDateTime = new Date(appointmentDateTime)
-            .toISOString()
-            .slice(0, 19)
-            .replace("T", " ");
         const appointmentRequestDto = {
             customerId,
-            startDateTime: formattedDateTime,
+            startDateTime: format(appointmentDateTime, "yyyy-MM-dd HH:mm:ss"),
             approvalStatus: "PENDING",
             employeeId,
             treatmentId,
@@ -63,7 +60,11 @@ export default function Cart({ className }) {
                 <tbody>
                     {items.length === 0 && (
                         <tr>
-                            <td colSpan="5"><p className="font-base text-3xl">Cart is empty</p></td>
+                            <td colSpan="5">
+                                <p className="font-base text-3xl">
+                                    Cart is empty
+                                </p>
+                            </td>
                         </tr>
                     )}
                     {items &&
